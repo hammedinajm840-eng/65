@@ -337,11 +337,13 @@ subjectsContainer.innerHTML = '';
 let search =
 searchInput.value.trim();
 
+```javascript id="7ppz9l"
 const subjects =
-subjectsByLevel[level]
+(subjectsByLevel[level] || [])
 .filter(subject =>
 subject.includes(search)
 );
+```
 
 subjects.forEach(subject=>{
 
