@@ -328,7 +328,10 @@ ${subject}
 RENDER
 ========================= */
 
+```javascript
 window.renderSubjects = function(level){
+
+level = level.trim();
 
 levelTitle.innerText = `✨ ${level} ✨`;
 
@@ -337,13 +340,23 @@ subjectsContainer.innerHTML = '';
 let search =
 searchInput.value.trim();
 
-```javascript id="7ppz9l"
 const subjects =
 (subjectsByLevel[level] || [])
 .filter(subject =>
 subject.includes(search)
 );
-```
+
+if(subjects.length === 0){
+
+subjectsContainer.innerHTML = `
+<div class="text-center text-3xl font-black text-red-500 col-span-full">
+لا توجد مواد
+</div>
+`;
+
+return;
+
+}
 
 subjects.forEach(subject=>{
 
@@ -374,21 +387,23 @@ attachUploadEvents();
 
 }
 
+
 /* =========================
 SEARCH
 ========================= */
 
+```javascript
 searchInput.addEventListener('input',()=>{
 
 const level =
 levelTitle.innerText
-.replace('✨','')
-.replace('✨','')
+.replaceAll('✨','')
 .trim();
 
 renderSubjects(level);
 
 });
+```
 
 /* =========================
 UPLOAD
